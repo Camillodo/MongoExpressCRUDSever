@@ -20,13 +20,17 @@ mongoose
   .then(() => console.log("Connected to db"))
   .catch((err) => console.log(err));
 
+
 // JSON USE
 app.use(express.json());
+
+
 
 //MAIN ROAD
 app.get('/', (req, res) => {
   res.send("HEHEH BUAY")
 })
+
 
 
 // API ROUTES
@@ -35,6 +39,9 @@ app.get('/api/wilder', WilderController.read);
 app.put("/api/wilder", WilderController.update)
 app.delete("/api/wilder", WilderController.delete)
 
+app.use((req, res, next) => {
+  res.status(404).send("NOT FOUND BABY")
+})
 
 //LISTEN
 app.listen(PORT, () => console.log(`it's on port ${PORT} baby !`))
